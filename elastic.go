@@ -61,7 +61,7 @@ func main() {
 	}
 	fmt.Println("exists\n", exists)
 	if !exists {
-		createIndex, err := client.CreateIndex("facebook").Do(ctx)
+		createIndex, err := client.CreateIndex("facebook").BodyJson(mapping).Do(ctx)
 		if err != nil {
 			panic(err)
 		}
