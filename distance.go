@@ -31,7 +31,7 @@ func distance(lat1 float64, lon1 float64, lat2 float64, lon2 float64) float64 {
 	rlat2 := float64(PI * lat2 / 180)
 
 	t := float64(lon1 - lon2)
-	rt := float64(PI * theta / 180)
+	rt := float64(PI * t / 180)
 
 	dist := math.Sin(rlat1)*math.Sin(rlat2) + math.Cos(rlat1)*math.Cos(rlat2)*math.Cos(rt)
 
