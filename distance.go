@@ -27,13 +27,13 @@ func main() {
 func distance(lat1 float64, lon1 float64, lat2 float64, lon2 float64) float64 {
 	const PI float64 = 3.141592653589793
 
-	radlat1 := float64(PI * lat1 / 180)
-	radlat2 := float64(PI * lat2 / 180)
+	rlat1 := float64(PI * lat1 / 180)
+	rlat2 := float64(PI * lat2 / 180)
 
-	theta := float64(lon1 - lon2)
-	radtheta := float64(PI * theta / 180)
+	t := float64(lon1 - lon2)
+	rt := float64(PI * theta / 180)
 
-	dist := math.Sin(radlat1)*math.Sin(radlat2) + math.Cos(radlat1)*math.Cos(radlat2)*math.Cos(radtheta)
+	dist := math.Sin(rlat1)*math.Sin(rlat2) + math.Cos(rlat1)*math.Cos(rlat2)*math.Cos(rt)
 
 	if dist > 1 {
 		dist = 1
