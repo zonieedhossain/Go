@@ -20,7 +20,7 @@ func main() {
 }
 func distance(lat1 float64, lon1 float64, lat2 float64, lon2 float64) float64 {
 	const PI float64 = 3.141592653589793
-	if lat2 == 0.0 && lon2 == 0.0 {
+	if (lat2 == 0.0 && lon2 == 0.0) || (lat1 == lat2 && lon1 == lon2) {
 		dist := 0.0
 		return dist
 	} else {
