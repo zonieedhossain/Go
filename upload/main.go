@@ -91,7 +91,7 @@ func Routes() {
 }
 
 func GenSignedurl(name string) (string, error) {
-	jsonkey, err := ioutil.ReadFile("/home/xtreme/go/src/test/BasicGo/upload/demo.json")
+	jsonkey, err := ioutil.ReadFile("json_bucket_url")
 	if err != nil {
 		panic(err)
 	}
