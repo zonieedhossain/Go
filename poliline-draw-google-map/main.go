@@ -9,7 +9,7 @@ import (
 )
 
 func GetMapWithPolygon(output string, geometry string) {
-	endpoint, _ := url.Parse("https://maps.googleapis.com/maps/api/staticmap?path=color:0x0000ff|weight:5|23.85210,90.34421|23.80460,90.41470|23.81293,90.40731|23.82109,90.42139&zoom=13&size=2480x720&key=OUR_API_KEY")
+	endpoint, _ := url.Parse("https://maps.googleapis.com/maps/api/staticmap?path=color:0x0000ff|weight:5|23.85210,90.34421|23.80460,90.41470|23.81293,90.40731|23.82109,90.42139&zoom=13&size=2480x720&key=YOUR_API_KEY")
 	queryParams := endpoint.Query()
 	queryParams.Set("ppi", "320")
 	queryParams.Set("w", "1280")

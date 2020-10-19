@@ -60,7 +60,7 @@ func Uploadfile(w http.ResponseWriter, r *http.Request) {
 }
 
 func GandU(file multipart.File, image string) error {
-	url, err := GenSignedurl(fmt.Sprintf("ping/%s", image))
+	url, err := GenSignedurl(fmt.Sprintf("demo/%s", image))
 	if err != nil {
 		return err
 	}

@@ -34,7 +34,7 @@ func GetMapWithPolygon(output string, geometry string) {
 	fmt.Println(endpoint)
 	queryParams := endpoint.Query()
 	fmt.Println(queryParams)
-	queryParams.Set("api_key", "Uf8AolmmpEuzzgUDCt3V_Kzu7SetGaL9yLxXZlha-RE")
+	queryParams.Set("api_key", "your_API_key")
 
 	queryParams.Set("ppi", "320")
 	queryParams.Set("w", "1280")

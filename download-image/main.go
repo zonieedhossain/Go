@@ -16,7 +16,7 @@ var (
 
 func main() {
 
-	fullUrlFile = "https://maps.googleapis.com/maps/api/staticmap?center=23.770474%2C90.362925&key=AIzaSyCeLaDxdBF1ipP-rADJZhitd15MOZoC-1I%0A%0A&maptype=roadmap&markers=color%3Agreen%7c23.770474%2C90.362925&size=2480x720&zoom=13"
+	fullUrlFile = "https://maps.googleapis.com/maps/api/staticmap?center=23.770474%2C90.362925&key={your_key}-1I%0A%0A&maptype=roadmap&markers=color%3Agreen%7c23.770474%2C90.362925&size=2480x720&zoom=13"
 
 	// Build fileName from fullPath
 	buildFileName()
