@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -21,41 +22,38 @@ var (
 )
 
 func Uploadfile(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "upload\n")
-	//parshe every single part of request type Multipart/FromFile
-	r.ParseMultipartForm(10 << 20)
-
-	//take the file from input
-	image, handler, err := r.FormFile("image")
+	file, err := op.Open("/home/xtreme/go/src/test/upload/test.txt")
 	if err != nil {
-		fmt.Println("something Wrong Please check input")
-		fmt.Println(err)
-		return
+		fmt.Println("Cann't open the file")
 	}
-	defer image.Close()
-	fmt.Printf("Upload Image: %+v\n Image Size: %+v\n MIME Header: %+v\n", handler.Filename, handler.Size, handler.Header)
+	fileContents, err := ioutil.ReadAll(file)
+	if err != nil {
+		fmt.Println("Cann't read the file")
+	}
+	fi, err := file.Stat()
+	if err != nil {
+		fmt.Println("Cann't stat the file")
+	}
+	file.Close()
+	body := new(bytes.Buffer)
+	writer := multipart.NewWriter(body)
+	part, err := writer.CreateFormFile(paramName, fi.Name())
+	if err != nil {
+		fmt.Println("Cann't create the part")
+	}
+	part.Write(fileContents)
+
+	err = writer.Close()
+	if err != nil {
+		fmt.Println("writter close")
+	}
 
 	err = GandU(image, "image")
 	if err != nil {
 		log.Fatal(err)
 		return
 	}
-	// create a temp derectory and file
-	// tempFile, err := ioutil.TempFile("temp-image", "upload-*png")
-	// if err != nil {
-	// 	fmt.Println(err)
-	// 	return
-	// }
-	// defer tempFile.Close()
-	//
-	// imagebytes, err := ioutil.ReadAll(image)
-	// if err != nil {
-	// 	fmt.Println(err)
-	// 	return
-	// }
-	// tempFile.Write(imagebytes)
 
-	//if success to upload then return
 	fmt.Fprintf(w, "successfully uploaded")
 }
 
@@ -84,10 +82,6 @@ func uploadIntoBucket(file multipart.File, url string) error {
 	}
 	fmt.Println(resp)
 	return nil
-}
-func Routes() {
-	http.HandleFunc("/upload", Uploadfile)
-	http.ListenAndServe(":8081", nil)
 }
 
 func GenSignedurl(name string) (string, error) {
@@ -122,6 +116,5 @@ func GenSignedurl(name string) (string, error) {
 }
 func main() {
 	fmt.Println("starting upload file")
-
-	Routes()
+	Uploadfile()
 }
